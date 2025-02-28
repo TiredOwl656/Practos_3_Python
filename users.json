@@ -1,0 +1,16 @@
+{
+    "q": {
+        "username": "q",
+        "password": "q",
+        "role": "user",
+        "cart": [],
+        "history": []
+    },
+    "a": {
+        "username": "a",
+        "password": "a",
+        "role": "admin",
+        "cart": [],
+        "history": []
+    }
+}
