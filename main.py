@@ -1,7 +1,6 @@
 
 import json
 from datetime import datetime
-from operator import itemgetter
 import os
 
 
@@ -41,7 +40,7 @@ class User:
     def add_to_history(self, products):
         self._history.extend(products)
 
-    def view_cart(self, products_data, sort_criteria=None):
+    def view_cart(self, sort_criteria=None):
         if not self._cart:
             print("Корзина пуста.")
             return
@@ -146,7 +145,7 @@ class Customer(User):
             print("Товар отсутствует на складе.")
 
     def checkout(self):
-        self.view_cart(None)
+        self.view_cart()
         if input("Подтвердить покупку? (y/n): ").lower() == "y":
             for product in self.get_cart():
                 product.set_purchase_date(datetime.now().isoformat())
@@ -719,15 +718,15 @@ def user_menu(customer, product_manager):
                         print("Неверный выбор. Пожалуйста, выберите число от 1 до 5.")
 
                 if sort_choice == "1":
-                    customer.view_cart(product_manager.get_products(), "price")
+                    customer.view_cart("price")
                 elif sort_choice == "2":
-                    customer.view_cart(product_manager.get_products(), "price_desc")
+                    customer.view_cart("price_desc")
                 elif sort_choice == "3":
-                    customer.view_cart(product_manager.get_products(), "name")
+                    customer.view_cart("name")
                 elif sort_choice == "4":
-                    customer.view_cart(product_manager.get_products(), "name_desc")
+                    customer.view_cart("name_desc")
                 else:
-                    customer.view_cart(product_manager.get_products())
+                    customer.view_cart()
             elif choice == "4":
                 customer.checkout()
             elif choice == "5":
